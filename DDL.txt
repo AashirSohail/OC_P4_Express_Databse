@@ -1,0 +1,134 @@
+CREATE TABLE `DeliveryPerson` (
+  `StaffID` int NOT NULL,
+  `Fname` varchar(100),
+  `Lname` varchar(100),
+  `NIC` varchar(100),
+  `JoiningDate` varchar(100),
+  `Rating` float,
+  `Gender` varchar(100),
+  `Birthdate` varchar(100),
+  PRIMARY KEY (`StaffID`)
+);
+
+CREATE TABLE `Customer` (
+  `CustomerID` int NOT NULL,
+  `Fname` varchar(100),
+  `Lname` varchar(100),
+  `Email` varchar(100),
+  `Password` varchar(100),
+  `Payment` varchar(100),
+  PRIMARY KEY (`CustomerID`)
+);
+
+CREATE TABLE `Orders` (
+  `OrederID` int NOT NULL,
+  `CustomrID` int,
+  `StaffID` int,
+  `IsDelivered` varchar(100),
+  `ETA` float,
+  `Comments` varchar(100),
+  `OrderDate` varchar(100),
+  `OrderTime` varchar(100),
+  PRIMARY KEY (`OrederID`),
+  KEY `FK` (`CustomrID`, `StaffID`)
+);
+
+CREATE TABLE `Dishes` (
+  `DishID` int NOT NULL,
+  `Name` varchar(100),
+  `Description` varchar(100),
+  `Price` float,
+  `Type` varchar(100),
+  `Date` varchar(100),
+  PRIMARY KEY (`DishID`)
+);
+
+CREATE TABLE `ShippingDetails` (
+  `CustomerID` int NOT NULL,
+  `StreetAddress` varchar(100),
+  `Phone` int,
+  `City` varchar(100),
+  `Landmark` varchar(100),
+  PRIMARY KEY (`StreetAddress`),
+  KEY `FK` (`CustomerID`)
+);
+
+CREATE TABLE `OrderQuanitity` (
+  `OrderID` int,
+  `DishID` int,
+  `Quanity` int,
+  KEY `FK` (`OrderID`, `DishID`)
+);
+
+
+-----------------------------------------------------------------------------------
+
+
+INSERT INTO Customer(CustomerID,Fname,Lname,Email,Password,Payment)
+VALUES 
+(1,"Ahmed","Raza","ahmed@gmail.com","password","Card"),
+(2,"Ali","Arshad","ali@gmail.com","password","Cash"),
+(3,"Bilal","Mir","bilal@gmail.com","password","Cash");
+
+INSERT INTO DeliveryPerson(StaffID,Fname,Lname,NIC,JoiningDate,Rating,Gender,Birthdate)
+VALUES
+(1,"Nosherwan","Hamid", 543542,"12-MAR-2017",4.5,"Male","12-April-1990"),
+(2,"Bilal","Sadiq", 743369,"17-MAR-2018",4.3,"Male","21-June-1991"),
+(3,"Hanzala","Ahmed", 943e41,"22-MAR-2019",4.7,"Male","19-January-1993");
+
+INSERT INTO Dishes(DishID,Name,Description,Price,Type,Date)
+VALUES 
+(1,"Roasted Chicken","Chicken that is roasted on low heat with a mix of spices.",5.99,"main","17-7-2020"),
+(2,"Fried Turkey","Turkey that is deep fried in heated oil with a mix of spices.",5.99,"main","17-7-2020"),
+(3,"Panckas","Perfect mix of Eggs and Milk with goat butter and sugar.",3.99,"dessert","17-7-2020"),
+(4,"Almond Cake","Almond with sweetness and aroma of Vanilla.",3.99,"dessert","17-7-2020"),
+(5,"Beef Steak","Fine tenderloin cut made with herbs that are farm fresh.",5.99,"main","18-7-2020"),
+(6,"Beef Stroganoff.","Sautéed pieces of beef served in a sauce with smetana.",5.99,"main","18-7-2020"),
+(7,"Lemon Truffle","Lemon and orange-scented white chocolate truffles are refreshingly light and smooth.",3.99,"dessert","18-7-2020"),
+(8,"Molten Lava Cake","Elements of a flourless chocolate cake and a soufflé with a liquid chocolate center.",3.99,"dessert","18-7-2020");
+
+INSERT INTO shippingdetails(CustomerID,StreetAddress,Phone,City,Landmark) 
+VALUES 
+(1,"H#53 ST#23 Model Town, Kahuta Road",9243524234,"Islamabad","None"), 
+(2,"H#67 ST#1 Model Town, Kahuta Road",9243575622,"Islamabad","Near Aziz Hospital"), 
+(3,"H#834 ST#8 Model Town, Kahuta Road",9243094238,"Islamabad","Near Water Supply Office")
+
+INSERT INTO orderquanitity(OrderID,DishID,Quanity)
+VALUES
+(1,1,2),
+(2,3,1),
+(3,2,1),
+(4,4,3)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
